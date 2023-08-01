@@ -1,0 +1,18 @@
+@import url('./style.css');
+
+body {
+    background-color: rgb(62, 58, 62);
+    color: white;
+}
+
+.light-blue, .bgc-blue{
+    background-color: black;
+}
+
+.police-color{
+    color: white;
+}
+
+.black{
+    color: black;
+}

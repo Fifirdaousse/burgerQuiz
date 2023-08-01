@@ -1,0 +1,267 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@500&display=swap');
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: 'Roboto', sans-serif;
+  font-size: 22px;
+}
+:root{
+    --primary-color : #ACC8E5;
+    --second-color : #112A46;
+}
+
+.bgc-blue{
+    background-color: var(--primary-color);
+}
+
+/* IMAGE */
+img{
+    object-fit: contain;
+}
+
+/* Typo */
+.text-deco{
+    text-decoration: none;
+}
+
+.text-center{
+    text-align: center;
+}
+
+/* SIZE */
+.w-1200{
+    max-width: 1200px;
+}
+.w-1000{
+    max-width: 1000px;
+}
+
+.w-70{
+    width: 70%;
+}
+.w-50{
+    max-width: 50%;
+}
+.w-60{
+    width: 60%;
+}
+
+.w-55{
+    max-width: 55px;
+}
+
+.h-80{
+    height: 80px;
+}
+/* MARGIN */
+.p-1 {
+    padding: 16px; /*1em = 1rem = 16px*/
+}
+.p-45{
+    padding: 45px;
+}
+.p-5{
+    padding: 5px;
+}
+.m-auto{
+    margin: auto;
+}
+.m-5{
+    margin: 5px;
+}
+.m-10{
+    margin: 10px;
+}
+.m-15{
+    margin: 15px;
+}
+
+.m-b-35{
+    margin-bottom: 35px;
+}
+/* DISPLAY */
+.d-flex {
+    display: flex;
+}
+
+.d-grid{
+    display: grid;
+}
+ .wrap{
+    flex-wrap: wrap;
+ }
+
+.jc-center{
+    justify-content: center;
+}
+.sp-bet{
+    justify-content: space-between;
+}
+.jc-end{
+    justify-content: flex-end;
+}
+
+.align-center{
+    align-items: center;
+}
+
+
+
+/* COLOR */
+.light-blue{
+    background-color: var(--primary-color);
+}
+.police-color{
+    color: var(--second-color);
+}
+.bgc-w{
+    background-color: white;
+}
+
+/* OBJECT */
+.border-ra{
+    border-radius: 20px;
+}
+
+.input{
+    padding: 5px;
+    height: 30px;
+    border: none;
+    max-width: 360px;
+}
+
+.button{
+    background-color: var(--second-color);
+    color: white;
+    border: none;
+    max-width: 250px;
+    padding: 8px;
+    font-size: 20px;
+}
+
+.button:hover{
+    cursor: pointer;
+}
+
+
+h4{
+    display: inline;
+}
+
+footer{
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+}
+
+
+/* --------------------------------- */
+
+
+@media screen and (max-width: 360px) {
+    .w-360{
+        width: 360px;
+    }
+    .m-5{
+        margin: 5px;
+    }
+    #burger-menu {
+        cursor: pointer;
+        height: 30px;
+        width: 30px;
+        margin: 5px;
+        overflow: visible;
+        position: relative;
+        z-index: 9;
+    
+         /* THE LINES */
+        span,
+        span:before,
+        span:after {
+            background: #000000;
+            display: block;
+            height: 2px;
+            /* opacity: s; */
+            position: absolute;
+            transition: 0.3s ease-in-out;
+        }
+    
+        span:before,
+        span:after {
+            content: '';
+        }
+    
+         /* TOP */
+        span:before {
+            left: 0px;
+            top: -10px;
+            width: 27px;
+        }
+    
+         /* MIDDLE */
+        span {
+            right: 0px;
+            top: 13px;
+            width: 27px;
+        }
+    
+        /* BOTTOM */
+        span:after {
+            left: 0px;
+            top: 10px;
+            width: 27px;
+        }
+    
+        /* ROTATION ON CLICK */
+        &.close {
+             /* TOP */
+            span:before {
+                top: 0px;
+                transform: rotate(90deg);
+                width: 27px;
+            }
+    
+            /* MIDDLE */
+            span {
+                transform: rotate(-45deg);
+                top: 13px;
+                width: 27px;
+            }
+    
+            /* BOTTOM */
+            span:after {
+                top: 0px;
+                left: 0;
+                transform: rotate(90deg);
+                /* opacity: 0; */
+                width: 0;
+            }
+        }
+    }
+    
+    #menu {
+        z-index: 1;
+        min-width: 100%;
+        min-height: 100%;
+        position: fixed;
+        top: 0;
+        height: 0;
+        visibility: hidden;
+        opacity: 0;
+        text-align: center;
+        padding-top: 20px;
+        transition: all 0.3s ease-in-out;
+    
+        &.overlay {
+            visibility: visible;
+            opacity: 1;
+            padding-top: 100px;
+            background: rgba(0, 0, 0, 0.5);
+        }
+    
+    }
+}
