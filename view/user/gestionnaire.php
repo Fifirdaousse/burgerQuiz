@@ -2,7 +2,7 @@
 <main class="text-center d-grid jc-center align-center">
     <div class="d-flex align-center">
     <h2><?= $args['pageTitle'] ?></h2>
-    <td><a href="/ctrl/ctrl/user-add.php" class="m-10">Ajouter</a></td>
+    <td><a href="/ctrl/user/user-add.php" class="m-10">Ajouter</a></td>
     </div>
         
     <table class="border-ra light-blue p-5 m-10 m-auto">

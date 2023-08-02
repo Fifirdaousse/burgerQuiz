@@ -2,7 +2,7 @@
 
     <img src="/asset/img/quiz-burger.png" alt="Burger Quiz" class="w-50 m-10">
 
-    <form action="/ctrl/quiz/list.php" method="post" class="border-ra light-blue">
+    <form action="/ctrl/auth/login.php" method="post" class="border-ra light-blue">
         <h2 class="text-center"> Se connecter</h2>
 
         <div class="d-grid m-10">

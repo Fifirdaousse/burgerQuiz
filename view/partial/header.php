@@ -6,7 +6,6 @@ if (isset($_COOKIE['prefer-inverted-theme'])) {
 
 ?>
 
-
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -27,19 +26,24 @@ if (isset($_COOKIE['prefer-inverted-theme'])) {
         <nav class="bgc-blue m-b-35 d-flex sp-bet">
             <div id="menu">
                 <div class="d-flex jc-end">
-                    <a href="../index.php"><img src="/asset/img/logo.png" alt="Logo" class="w-55 align-center"></a>
+                    <a href="/index.php"><img src="/asset/img/logo.png" alt="Logo" class="w-55 align-center"></a>
                     
+                    <!-- VIEW GESTIONNAIRE -->
+                    <?php if (isset($_SESSION['idRole']) && ($_SESSION['idRole'] === 10)) : ?>
+                        <a href="/ctrl/user/list.php" class="text-deco police-color p-1">Utilisateurs</a>
+                    <?php endif; ?>
+
                     <!-- SI LOGGÉ OU PAS -->
-                    <?php if (isset($_SESSION['utilisateur_id'])) { ?>
+                    <!-- VIEW MEMBRE -->
+                    <?php if (isset($_SESSION['user'])) { ?>
                         <a href="/ctrl/quiz/list.php" class="text-deco police-color p-1">Quiz</a>
                         <a href="/ctrl/quiz/ranked.php" class="text-deco police-color p-1">Classement</a>
-                        <a href="/ctrl/user/list.php" class="text-deco police-color p-1">Utilisateurs</a>
                         <a href="/ctrl/auth/logout.php" class="text-deco police-color p-1">Logout</a>
                     <?php } else { ?>
                         <a href="/ctrl/auth/login-display.php" class="text-deco police-color p-1">Login</a>
                     <?php } ?>
 
-                    <!-- BOUTTON THEME SOMBRE -->
+                    <!-- BOUTTON CHANGEMENT DE THEME  -->
                     <form action="/ctrl/invert-theme.php">
                         <button type="submit" class="button border-ra m-10">Theme</button>
                     </form>

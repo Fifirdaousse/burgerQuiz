@@ -115,7 +115,7 @@ abstract class Ctrl
     /** Indique si l'utilisateur est loggué. */
     protected function isUserLogged()
     {
-        return isset($_SESSION['utilisateur_id']);
+        return isset($_SESSION['user']);
     }
 
     /**
@@ -135,7 +135,7 @@ abstract class Ctrl
      */
     private function guardHasUserRole($codeRole)
     {
-        if ($codeRole != null && $_SESSION['utilisateur_id']['codeRole'] !== $codeRole) {
+        if ($codeRole != null && $_SESSION['user']['codeRole'] !== $codeRole) {
 
             header('Location: /ctrl/auth/login-display.php');
         }

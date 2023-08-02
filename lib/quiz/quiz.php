@@ -73,7 +73,7 @@ class LibQuiz
 
         // Prépare la requête
         $query = 'INSERT INTO score (idUser, score) VALUES';
-        $query .= ' (:idUser, :score)';
+        $query .= '(:idUser, :score)';
 
         // self::log()->info(__FUNCTION__, ['query' => $query]);
         $stmt = LibDb::getPDO()->prepare($query);

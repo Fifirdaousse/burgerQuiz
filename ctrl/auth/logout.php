@@ -3,7 +3,7 @@
 require_once($_SERVER['DOCUMENT_ROOT'] . '/ctrl/ctrl.php');
 // require_once($_SERVER['DOCUMENT_ROOT'] . '/lib/log.php');
 
-use Monolog\Logger;
+// use Monolog\Logger;
 
 /** Traite le formulaire de Logout. */
 class Logout extends Ctrl
@@ -26,6 +26,9 @@ class Logout extends Ctrl
     {
         // Vide la session de l'Utilisateur
         $_SESSION = [];
+    
+        session_unset();
+        session_destroy();
 
         // et le redirige vers la page d'accueil
         header('Location: /');

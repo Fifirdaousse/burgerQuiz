@@ -9,7 +9,7 @@ class LibUser
     // {
     //     return Log::getLog(__CLASS__);
     // }
-
+    
     /**
      * Sélectionne tous les Utilisateurs et les ordonne par leur email, de A à Z.
      * 
@@ -59,15 +59,15 @@ class LibUser
         $stmt->bindParam(':motDePasse', $mdp);
 
         // Exécute la requête
-        // $successOrFailure = $stmt->execute();
+        $successOrFailure = $stmt->execute();
         // self::log()->info(__FUNCTION__, ['Success (1) or Failure (0) ?' => $successOrFailure]);
 
         // Quand le résultat vaut 'false', retourne une valeur 'null' (ou 'absence de valeur')
         // sinon, retourne l'Utilisateur identifié.
         $result = $stmt->fetch(PDO::FETCH_ASSOC);
-        // if ($result == false) {
-        //     $result = null;
-        // }
+        if ($result == false) {
+            $result = null;
+        }
 
         // self::log()->info(__FUNCTION__, ['result' => $result]);
         return $result;
@@ -80,18 +80,18 @@ class LibUser
      * 
      * @return mixed Tableau associatif de l'Utilisateur s'il existe, ou 'null'.
      */
-    static function get($id)
+    static function get($idRole)
     {
         // self::log()->info(__FUNCTION__, ['id' => $id]);
 
         // Prépare la requête
         $query = 'SELECT U.id, U.email, U.motDePasse, U.idRole';
         $query .= ' FROM utilisateur AS U';
-        $query .= ' JOIN role AS R ON U.idRole = R.id';
-        $query .= ' WHERE U.id = :id';
+        $query .= ' JOIN role AS R ON U.id = U.id';
+        $query .= ' WHERE U.idRole = :idRole';
         // self::log()->info(__FUNCTION__, ['query' => $query]);
         $stmt = LibDb::getPDO()->prepare($query);
-        $stmt->bindParam(':id', $id);
+        $stmt->bindParam(':idRole', $idRole);
 
         // Exécute la requête
         $successOrFailure = $stmt->execute();

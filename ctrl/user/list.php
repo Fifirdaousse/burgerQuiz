@@ -16,6 +16,15 @@ class ListUser extends Ctrl
     // {
     //     return Log::getLog(__CLASS__);
     // }
+    protected function isUserLogged()
+    {
+        return isset($_SESSION['user']);
+    }
+
+    protected function isRequiredUserLogged()
+    {
+        return true;
+    }
 
     /** @Override */
     function getPageTitle()
@@ -34,6 +43,12 @@ class ListUser extends Ctrl
     function getView()
     {
         return '/view/user/gestionnaire.php';
+    }
+
+    protected function requireRole()
+    {
+        return $admin = LibUser::get(10);
+        $this->addViewArg('admin', $admin);
     }
 }
 

@@ -28,11 +28,12 @@ class Login extends Ctrl
         $user = $this->getUser();
         if ($user !== null) {
 
-            $_SESSION['utilisateur_id'] = $user;
+            $_SESSION['user'] = $user;
 
-            header('Location: /');
+            header('Location: /ctrl/quiz/list.php');
             exit;
         }
+
 
         // Par défaut,
         // redirige l'Utilisateur vers la page de 'login' avec un message d'information
@@ -50,7 +51,7 @@ class Login extends Ctrl
 
         return  $user;
 
-        if (isset($_SESSION['utilisateur_id'])) {
+        if (isset($_SESSION['user'])) {
             header("Location: /ctrl/quiz/list.php"); // Rediriger vers la page d'accueil ou toute autre page après la connexion
         }
     }

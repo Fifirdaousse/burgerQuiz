@@ -1,6 +1,7 @@
 <?php 
 require_once($_SERVER['DOCUMENT_ROOT'] . '/ctrl/ctrl.php');
 require_once($_SERVER['DOCUMENT_ROOT'] . '/lib/quiz/quiz.php');
+require_once($_SERVER['DOCUMENT_ROOT'] . '/lib/user/user.php');
 
 class Result extends Ctrl
 {
@@ -43,7 +44,8 @@ class Result extends Ctrl
         }
 
             // Effectuer la validation des données  
-            $idUser = $_SESSION['utilisateur_id'];
+            // $_SESSION['user_id'] = $result['id'];
+            $idUser = $_SESSION['user'];
             // $this->addViewArg('idUser', $_SESSION);
             $score = intval($resultat);
             $this->addViewArg('score', $score);
