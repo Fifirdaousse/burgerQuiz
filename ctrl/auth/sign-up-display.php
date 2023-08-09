@@ -1,19 +1,19 @@
 <?php
 
 require_once($_SERVER['DOCUMENT_ROOT'] . '/ctrl/ctrl.php');
-// require_once($_SERVER['DOCUMENT_ROOT'] . '/lib/log.php');
+require_once($_SERVER['DOCUMENT_ROOT'] . '/lib/log.php');
 
-// use Monolog\Logger;
+use Monolog\Logger;
 
 /** Affiche le formualire de signup. */
 class SignUpDisplay extends Ctrl
 {
     /** @Override */
-/**    function log(): Logger
+    function log(): Logger
     {
         return Log::getLog(__CLASS__);
     }
-*/
+
 
     /** @Override */
     function getPageTitle()

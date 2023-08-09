@@ -1,0 +1,19 @@
+{
+    "name": "brief/640",
+    "description": "brief 640 - quiz",
+    "type": "project",
+    "autoload": {
+        "psr-4": {
+            "brief\\640\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "FC",
+            "email": "fifi@gmail.com"
+        }
+    ],
+    "require": {
+        "monolog/monolog": "^3.3"
+    }
+}

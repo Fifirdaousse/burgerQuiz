@@ -1,21 +1,17 @@
-<!-- A MODIF -->
-
 <?php
-
 require_once($_SERVER['DOCUMENT_ROOT'] . '/ctrl/ctrl.php');
-// require_once($_SERVER['DOCUMENT_ROOT'] . '/lib/log.php');
-
+require_once($_SERVER['DOCUMENT_ROOT'] . '/lib/log.php');
 require_once($_SERVER['DOCUMENT_ROOT'] . '/lib/quiz/quiz.php');
 
-// use Monolog\Logger;
+use Monolog\Logger;
 
 /** Liste les Questions. */
 class Quiz extends Ctrl
 {
     /** @Override */
-    // function log() : Logger {
-    //     return Log::getLog(__CLASS__);
-    // } 
+    function log() : Logger {
+        return Log::getLog(__CLASS__);
+    } 
 
     /** @Override */
     protected function isUserLogged()

@@ -1,14 +1,14 @@
 <?php
 
-// require_once($_SERVER['DOCUMENT_ROOT'] . '/vendor/autoload.php');
+require_once($_SERVER['DOCUMENT_ROOT'] . '/vendor/autoload.php');
 
-// use Monolog\Logger;
+use Monolog\Logger;
 
 /** Implémentation partielle d'un Controller. */
 abstract class Ctrl
 {
     /** Oblige chaque Controlleur à définir un logger. */
-//->      protected abstract function log() : Logger;
+    protected abstract function log() : Logger;
 
     /** Informations transmises à la vue, sous forme d'un tableau associatif. */
     protected array $viewArgs = [];
@@ -62,10 +62,10 @@ abstract class Ctrl
     /** Effectue le travail 'GENERIQUE' du Controlleur. */
     public function execute()
     {
-//->         $this->log()->info(__FUNCTION__);
+         $this->log()->info(__FUNCTION__);
 
         // Chronomètre : start
-//->        $start = microtime(true);
+        $start = microtime(true);
 
         // Active par défaut le support des sessions
         session_start();
@@ -93,12 +93,12 @@ abstract class Ctrl
         $this->addViewArg('description', $this->getDescription());
 
         // Chronomètre : stop
-//->        $end = microtime(true);
+        $end = microtime(true);
 
         // Calcule le temps passé dans le Controlleur et fournit l'information à la vue
-//->        $elapsedtime = $end - $start;
-//->          $this->log()->info(__FUNCTION__, ['elapsedTime' => $elapsedtime]);
-//->        $this->addViewArg('elapsedTime', "Elapsed time for the request : $elapsedtime seconds");
+        $elapsedtime = $end - $start;
+          $this->log()->info(__FUNCTION__, ['elapsedTime' => $elapsedtime]);
+        $this->addViewArg('elapsedTime', "Elapsed time for the request : $elapsedtime seconds");
 
         // Rend la vue
         $this->renderView();

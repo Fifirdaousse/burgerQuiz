@@ -2,20 +2,22 @@
 
 
 require_once($_SERVER['DOCUMENT_ROOT'] . '/ctrl/ctrl.php');
-// require_once($_SERVER['DOCUMENT_ROOT'] . '/lib/log.php');
+require_once($_SERVER['DOCUMENT_ROOT'] . '/lib/log.php');
 
 require_once($_SERVER['DOCUMENT_ROOT'] . '/lib/user/user.php');
 
-// use Monolog\Logger;
+use Monolog\Logger;
 
 /** Liste d'utilisateur. */
 class ListUser extends Ctrl
 {
     /** @Override */
-    // function log(): Logger
-    // {
-    //     return Log::getLog(__CLASS__);
-    // }
+    function log(): Logger
+    {
+        return Log::getLog(__CLASS__);
+    }
+
+    /** @Override */
     protected function isUserLogged()
     {
         return isset($_SESSION['user']);

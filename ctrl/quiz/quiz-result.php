@@ -2,15 +2,17 @@
 // var_dump();
 require_once($_SERVER['DOCUMENT_ROOT'] . '/ctrl/ctrl.php');
 require_once($_SERVER['DOCUMENT_ROOT'] . '/lib/quiz/quiz.php');
-require_once($_SERVER['DOCUMENT_ROOT'] . '/lib/user/user.php');
+require_once($_SERVER['DOCUMENT_ROOT'] . '/lib/log.php');
+
+use Monolog\Logger;
 
 class Result extends Ctrl
 {
     /** @Override */
-    // function log(): Logger
-    // {
-    //     return Log::getLog(__CLASS__);
-    // }
+    function log(): Logger
+    {
+        return Log::getLog(__CLASS__);
+    }
 
     /** @Override */
     function getPageTitle()
