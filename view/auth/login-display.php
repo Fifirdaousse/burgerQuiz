@@ -25,7 +25,7 @@
 
         <p>ou</p>
 
-        <a href="/ctrl/auth/sign-up.php" class="border-ra button m-10 text-deco"> Inscrivez-vous</a>
+        <a href="/ctrl/auth/sign-up-display.php" class="border-ra button m-10 text-deco"> Inscrivez-vous</a>
         </div>
     
 

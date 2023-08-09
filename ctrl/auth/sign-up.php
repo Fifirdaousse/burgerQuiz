@@ -8,7 +8,7 @@ require_once($_SERVER['DOCUMENT_ROOT'] . '/lib/user/user.php');
 
 // use Monolog\Logger;
 
-/** Traite le formulaire de création d'un Utilisateur. */
+/** Affiche le formualire de signup. */
 class SignUser extends Ctrl
 {
     // /** @Override */
@@ -26,7 +26,12 @@ class SignUser extends Ctrl
     /** @Override */
     function getPageTitle()
     {
-        return 'S\'inscrire';
+        return null;
+    }
+    /** @Override */
+    function getDescription()
+    {
+        return null;
     }
 
     /** @Override */
@@ -41,7 +46,7 @@ class SignUser extends Ctrl
         LibUser::signup($nom, $prenom, $email, $mdp);
 
         // Redirige l'Utilisateur vers la liste des Utilisateurs
-        header('Location: /ctrl/auth/sign-up-display.php');
+        header('Location: /ctrl/auth/login-display.php');
     }
 
     /** @Override */

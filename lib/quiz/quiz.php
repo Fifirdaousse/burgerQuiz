@@ -26,6 +26,7 @@ class LibQuiz
         return $arr;
    }
 
+   //Recupere les questions ainsi que les propositions associés
     static function getQuestion($numbers)
     {
         // self::log()->info(__FUNCTION__, ['idUser' => $idUser, 'title' => $title, 'description' => $description, 'text' => $text, 'picture' => $picture]);
@@ -61,33 +62,29 @@ class LibQuiz
     }
 
     /**
-     * Sélectionne un Article d'après son identifiant.
-     * 
-     * @param int $id Identifiant de l'Article.
-     * 
-     * @return mixed Tableau associatif de l'Article s'il existe, ou 'false'.
+     * Stock le score d'un utilisateur 
+     * En fonction de son id
      */
-    static function score($idUser, $score)
+    static function score($score, $idUser)
     {
         // self::log()->info(__FUNCTION__, ['id' => $id]);
 
         // Prépare la requête
-        $query = 'INSERT INTO score (idUser, score) VALUES';
-        $query .= '(:idUser, :score)';
+        $query = 'INSERT INTO score (score, idUser) VALUES';
+        $query .= '(:score, :idUser)';
 
         // self::log()->info(__FUNCTION__, ['query' => $query]);
         $stmt = LibDb::getPDO()->prepare($query);
-        $stmt->bindParam(':idUser', $idUser);
         $stmt->bindParam(':score', $score);
+        $stmt->bindParam(':idUser', $idUser);
 
         // Exécute la requête
         $successOrFailure = $stmt->execute();
         // self::log()->info(__FUNCTION__, ['Success (1) or Failure (0) ?' => $successOrFailure]);
 
-        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+        // $result = $stmt->fetch(PDO::FETCH_ASSOC);
         // self::log()->info(__FUNCTION__, ['result' => $result]);
 
-        return $result;
+        return $successOrFailure;
     }
-
 }

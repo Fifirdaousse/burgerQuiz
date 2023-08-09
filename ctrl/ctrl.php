@@ -21,6 +21,14 @@ abstract class Ctrl
      */
     protected abstract function getPageTitle();
 
+    /**
+     * Oblige chaque Controlleur à définir une description, avec une méthode abstraite.
+     * 
+     * C'est une très bonne démarche de donner à chaque page une description unique,
+     * dans le cadre du référencement.
+     */
+    protected abstract function getDescription();
+
     /** Effectue le travail 'SPECIFIQUE' au Controlleur. */
     protected abstract function do();
 
@@ -62,12 +70,15 @@ abstract class Ctrl
         // Active par défaut le support des sessions
         session_start();
 
+        // initialise le theme par défaut
+        $_SESSION['stylefilename'] = $_SESSION['stylefilename'] ?? 'style';
+
         // Vérifie si l'Utilisateur doit être loggé
         $this->guardIsUSerLogged();
 
         // Vérifie si l'Utilisateur doit avoir un Rôle particulier
-        $codeRole = $this->requireRole();
-        $this->guardHasUserRole($codeRole);
+        $idRole = $this->requireRole();
+        $this->guardHasUserRole($idRole);
 
         // Réalise le traitement effectué par le Controlleur
         $this->do();
@@ -77,6 +88,9 @@ abstract class Ctrl
 
         // Fournit à la vue l'information de titre de page
         $this->addViewArg('pageTitle', $this->getPageTitle());
+
+        // Fournit à la vue l'information de description
+        $this->addViewArg('description', $this->getDescription());
 
         // Chronomètre : stop
 //->        $end = microtime(true);
@@ -133,9 +147,9 @@ abstract class Ctrl
      * Quand l'Utilisateur loggé doit posséder un Rôle particulier,
      * le redirige vers la page de login.
      */
-    private function guardHasUserRole($codeRole)
+    private function guardHasUserRole($idRole)
     {
-        if ($codeRole != null && $_SESSION['user']['codeRole'] !== $codeRole) {
+        if ($idRole != null && $_SESSION['user']['idRole'] !== $idRole) {
 
             header('Location: /ctrl/auth/login-display.php');
         }

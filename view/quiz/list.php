@@ -1,5 +1,3 @@
-Faire un form pour suggestion de question
-
 
 <form action="/ctrl/quiz/quiz-result.php" method="post" class="w-70 w-1000 w-360 m-5">
     <?php foreach ($args['listQuiz'] as $key => $question) : ?>

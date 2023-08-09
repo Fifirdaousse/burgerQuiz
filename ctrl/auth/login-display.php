@@ -1,5 +1,4 @@
 <?php
-
 require_once($_SERVER['DOCUMENT_ROOT'] . '/ctrl/ctrl.php');
 // require_once($_SERVER['DOCUMENT_ROOT'] . '/lib/log.php');
 
@@ -22,9 +21,15 @@ class LoginDisplay extends Ctrl
     }
 
     /** @Override */
+    function getDescription()
+    {
+        return 'Session de connexion';
+    }
+
+    /** @Override */
     function do()
     {
-        
+        //Ne fais rien
     }
 
     /** @Override */

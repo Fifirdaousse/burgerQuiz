@@ -21,6 +21,12 @@ class Login extends Ctrl
     }
 
     /** @Override */
+    function getDescription()
+    {
+        return null;
+    }
+
+    /** @Override */
     function do()
     {
         // Quand l'Utilisateur est enregistré,
@@ -48,6 +54,8 @@ class Login extends Ctrl
         $mdp = $_POST['mdp'];
 
         $user = LibUser::find($email, $mdp);
+
+        
 
         return  $user;
 

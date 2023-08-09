@@ -5,7 +5,7 @@ require_once($_SERVER['DOCUMENT_ROOT'] . '/ctrl/ctrl.php');
 
 // use Monolog\Logger;
 
-/** Affiche le formualire de login. */
+/** Affiche le formualire de signup. */
 class SignUpDisplay extends Ctrl
 {
     /** @Override */
@@ -22,6 +22,12 @@ class SignUpDisplay extends Ctrl
     }
 
     /** @Override */
+    function getDescription()
+    {
+        return 'Session d\'inscription pour un nouvel utilisateur';
+    }
+
+    /** @Override */
     function do()
     {
         // Ne fait rien...
@@ -30,7 +36,7 @@ class SignUpDisplay extends Ctrl
     /** @Override */
     function getView()
     {
-        return '/view/auth/login-display.php';
+        return '/view/auth/sign-up.php';
     }
 }
 

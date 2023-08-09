@@ -30,6 +30,12 @@ class AddUser extends Ctrl
     }
 
     /** @Override */
+    function getDescription()
+    {
+        return 'Ajouter un nouvel utilisateur et définir son rôle';
+    }
+
+    /** @Override */
     function do()
     {
         // lit les données saisies dans le formulire

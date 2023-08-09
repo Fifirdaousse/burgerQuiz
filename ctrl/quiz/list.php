@@ -18,21 +18,37 @@ class Quiz extends Ctrl
     // } 
 
     /** @Override */
+    protected function isUserLogged()
+    {
+        return isset($_SESSION['user']);
+    }
+
+    /** @Override */
+    protected function isRequiredUserLogged()
+    {
+        return true;
+    }
+
+    /** @Override */
     function getPageTitle()
     {
         return 'QUIZ';
+    }
+    
+    /** @Override */
+    function getDescription()
+    {
+        return 'Liste de questions générés aléatoirement';
     }
 
     /** @Override */
     function do()
     {
-        // Liste les articles, et les expose à la vue
+        // Genere de maniere aleatoire les questions
         $numbers = implode(', ', LibQuiz::multyRandomNumber(1, 30));
-/*->*/        $listQuiz = LibQuiz::getQuestion($numbers);
+       $listQuiz = LibQuiz::getQuestion($numbers);
         $this->addViewArg('listQuiz', $listQuiz);
 
-        // $numbers = implode(', ', multyRandomNumber(1, 30));
-            // $questions = getQuestion($numbers);
     }
 
     /** @Override */

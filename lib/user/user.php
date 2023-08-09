@@ -9,7 +9,7 @@ class LibUser
     // {
     //     return Log::getLog(__CLASS__);
     // }
-    
+
     /**
      * Sélectionne tous les Utilisateurs et les ordonne par leur email, de A à Z.
      * 
@@ -24,10 +24,10 @@ class LibUser
         $query .= ' LEFT JOIN role AS R ON USER.idRole = R.id';
         $query .= ' ORDER BY USER.nom';
         $stmt = LibDb::getPDO()->prepare($query);
-    
+
         // Exécute la requête
         $stmt->execute();
-    
+
         $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
         return $result;
 
@@ -48,9 +48,9 @@ class LibUser
         // self::log()->info(__FUNCTION__, ['email' => $email, 'password' => $password]);
 
         // Prépare la requête
-        $query = 'SELECT U.id, U.email, U.motDePasse, U.idRole';
+        $query = 'SELECT *';
         $query .= ' FROM utilisateur AS U';
-        $query .= ' JOIN role AS R ON U.idRole = R.id';
+        // $query .= ' JOIN role AS R ON U.idRole = R.id';
         $query .= ' WHERE U.email = :email';
         $query .= ' AND U.motDePasse = :motDePasse';
         // self::log()->info(__FUNCTION__, ['query' => $query]);
@@ -59,9 +59,10 @@ class LibUser
         $stmt->bindParam(':motDePasse', $mdp);
 
         // Exécute la requête
-        $successOrFailure = $stmt->execute();
+        // $successOrFailure =
+        $stmt->execute();
         // self::log()->info(__FUNCTION__, ['Success (1) or Failure (0) ?' => $successOrFailure]);
-
+        
         // Quand le résultat vaut 'false', retourne une valeur 'null' (ou 'absence de valeur')
         // sinon, retourne l'Utilisateur identifié.
         $result = $stmt->fetch(PDO::FETCH_ASSOC);
@@ -80,18 +81,20 @@ class LibUser
      * 
      * @return mixed Tableau associatif de l'Utilisateur s'il existe, ou 'null'.
      */
-    static function get($idRole)
+    static function getId($id)
     {
         // self::log()->info(__FUNCTION__, ['id' => $id]);
 
         // Prépare la requête
-        $query = 'SELECT U.id, U.email, U.motDePasse, U.idRole';
+        $query = 'SELECT *';
         $query .= ' FROM utilisateur AS U';
-        $query .= ' JOIN role AS R ON U.id = U.id';
-        $query .= ' WHERE U.idRole = :idRole';
+        $query .= ' JOIN score AS S ON S.idUser = U.id';
+        $query .= ' WHERE U.id = :id';
         // self::log()->info(__FUNCTION__, ['query' => $query]);
         $stmt = LibDb::getPDO()->prepare($query);
-        $stmt->bindParam(':idRole', $idRole);
+        // $stmt->bindParam(':id', $id);
+        $stmt->bindParam(':id', $id);
+
 
         // Exécute la requête
         $successOrFailure = $stmt->execute();
@@ -100,11 +103,13 @@ class LibUser
         // Quand le résultat vaut 'false', retourne une valeur 'null' (ou 'absence de valeur')
         // sinon, retourne l'Utilisateur identifié.
         $result = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        // $_SESSION['userId'] = $result['id'];
         if ($result === false) {
             return null;
         }
 
-        // self::log()->info(__FUNCTION__, ['result' => $result]);
+        // // self::log()->info(__FUNCTION__, ['result' => $result]);
         return $result;
     }
 
@@ -112,7 +117,7 @@ class LibUser
      * Crée un Utilisateur.
      * 
      * @param string $email Email.
-     * @param string $password Mot de passe.
+     * @param string $mdp Mot de passe.
      * @param string $idRole Identifiant de Rôle.
      * 
      * @return bool 'true' en cas de succès.
@@ -138,34 +143,7 @@ class LibUser
         return $successOrFailure;
     }
 
-    /**
-     * Liste les Rôles ordonnées par libellés, de A à Z.
-     * 
-     * @return array Tableau de tableaux associatifs des Rôles.
-     */
-    static function listRole()
-    {
-        // self::log()->info(__FUNCTION__);
-
-        // Prépare la requête
-        $query = 'SELECT ROL.id, ROL.code, ROL.label';
-        $query .= ' FROM role ROL';
-        $query .= ' ORDER BY ROL.label ASC';
-        // self::log()->info(__FUNCTION__, ['query' => $query]);
-        $stmt = LibDb::getPDO()->prepare($query);
-
-        // Exécute la requête
-        $successOrFailure = $stmt->execute();
-        // self::log()->info(__FUNCTION__, ['Success (1) or Failure (0) ?' => $successOrFailure]);
-
-        $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
-        // self::log()->info(__FUNCTION__, ['result' => $result]);
-        return $result;
-    }
-
-
-    // S'incrire
+    // Inscrire un utilisateur
     static function signup($nom, $prenom, $email, $mdp)
     {
         // ID du rôle Membre
@@ -190,5 +168,4 @@ class LibUser
 
         return $successOrFailure;
     }
-
 }

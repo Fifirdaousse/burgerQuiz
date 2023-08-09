@@ -1,8 +1,6 @@
-<?php require("../view/partial/header.php"); ?>
+<main class="d-flex jc-center wrap w-1200 m-auto">
 
-<main class="d-flex jc-center wrap w-1200 ">
-
-    <form action="/ctrl/sign-up.php" method="post" class="border-ra p-45 light-blue w-360 m-5">
+    <form action="/ctrl/auth/sign-up.php" method="post" class="border-ra p-45 light-blue m-5">
         <h2 class="text-center"> S'inscrire</h2>
 
         <div class="d-grid m-10">
@@ -30,4 +28,3 @@
     </form>
 
 </main>
-<?php require("../view/partial/footer.php") ?>

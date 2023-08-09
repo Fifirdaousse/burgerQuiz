@@ -8,7 +8,7 @@ require_once($_SERVER['DOCUMENT_ROOT'] . '/lib/user/user.php');
 
 // use Monolog\Logger;
 
-/** Détail d'un Article. */
+/** Liste d'utilisateur. */
 class ListUser extends Ctrl
 {
     /** @Override */
@@ -21,15 +21,28 @@ class ListUser extends Ctrl
         return isset($_SESSION['user']);
     }
 
+    /** @Override */
     protected function isRequiredUserLogged()
     {
         return true;
     }
 
     /** @Override */
+    protected function requireRole()
+    {
+        return 10;
+    }
+
+    /** @Override */
     function getPageTitle()
     {
         return 'Liste des Utilisateurs : ';
+    }
+
+    /** @Override */
+    function getDescription()
+    {
+        return 'Liste d\'utilisateurs visible que par un gestionnaire';
     }
 
     /** @Override */
@@ -43,12 +56,6 @@ class ListUser extends Ctrl
     function getView()
     {
         return '/view/user/gestionnaire.php';
-    }
-
-    protected function requireRole()
-    {
-        return $admin = LibUser::get(10);
-        $this->addViewArg('admin', $admin);
     }
 }
 

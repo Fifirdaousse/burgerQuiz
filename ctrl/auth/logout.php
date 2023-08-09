@@ -22,6 +22,12 @@ class Logout extends Ctrl
     }
 
     /** @Override */
+    function getDescription()
+    {
+        return null;
+    }
+
+    /** @Override */
     function do()
     {
         // Vide la session de l'Utilisateur
