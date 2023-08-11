@@ -70,9 +70,6 @@ abstract class Ctrl
         // Active par défaut le support des sessions
         session_start();
 
-        // initialise le theme par défaut
-        $_SESSION['stylefilename'] = $_SESSION['stylefilename'] ?? 'style';
-
         // Vérifie si l'Utilisateur doit être loggé
         $this->guardIsUSerLogged();
 

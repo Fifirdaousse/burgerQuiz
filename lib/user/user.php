@@ -149,9 +149,6 @@ class LibUser
         // ID du rôle Membre
         $idRole = 20; 
 
-        // mots de passe des utilisateurs ne sont pas stockés en clair dans la bdd (cf BCRYPT...)
-        $hashMdp = password_hash($mdp, PASSWORD_BCRYPT);
-
         // Prépare la requête
         $query = 'INSERT INTO utilisateur (nom, prenom, email, motDePasse, idRole) VALUES';
         $query .= ' (:nom, :prenom, :email, :motDePasse, :idRole)';
@@ -160,7 +157,7 @@ class LibUser
         $stmt->bindParam(':nom', $nom);
         $stmt->bindParam(':prenom', $prenom);
         $stmt->bindParam(':email', $email);
-        $stmt->bindParam(':motDePasse', $hashMdp); // Stocke le hash du mot de passe
+        $stmt->bindParam(':motDePasse', $mdp); // Stocke le hash du mot de passe
         $stmt->bindParam(':idRole', $idRole); 
         
         // Exécute la requête
