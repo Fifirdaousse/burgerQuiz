@@ -1,14 +1,12 @@
 <?php
-
-
 require_once($_SERVER['DOCUMENT_ROOT'] . '/ctrl/ctrl.php');
 require_once($_SERVER['DOCUMENT_ROOT'] . '/lib/log.php');
-require_once($_SERVER['DOCUMENT_ROOT'] . '/lib/user/user.php');
+require_once($_SERVER['DOCUMENT_ROOT'] . '/lib/quiz/quiz.php');
 
 use Monolog\Logger;
 
-/** Liste d'utilisateur. */
-class ListUser extends Ctrl
+/** Liste les Questions. */
+class ListScore extends Ctrl
 {
     /** @Override */
     function log(): Logger
@@ -29,37 +27,30 @@ class ListUser extends Ctrl
     }
 
     /** @Override */
-    protected function requireRole()
-    {
-        return 10;
-    }
-
-    /** @Override */
     function getPageTitle()
     {
-        return 'Liste des Utilisateurs : ';
+        return 'Historique';
     }
 
     /** @Override */
     function getDescription()
     {
-        return 'Liste d\'utilisateurs visible que par un gestionnaire';
+        return 'Historique des scores';
     }
 
     /** @Override */
     function do()
     {
-        // var_dump('listUsers');
-        $listUsers = LibUser::readAllUser();
-        $this->addViewArg('listUsers', $listUsers);
+        $listScore = LibQuiz::readAllScore();
+        $this->addViewArg('listScore', $listScore);
     }
 
     /** @Override */
     function getView()
     {
-        return '/view/user/gestionnaire.php';
+        return '/view/user/historique.php';
     }
 }
 
-$ctrl = new ListUser();
+$ctrl = new ListScore();
 $ctrl->execute();

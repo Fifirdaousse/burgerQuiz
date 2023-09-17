@@ -1,4 +1,4 @@
-USE `540_fc`;
+USE `burger_quiz`;
 
 INSERT INTO role (id, nom) VALUES
      (10, 'Gestionnaire')

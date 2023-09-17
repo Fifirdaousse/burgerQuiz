@@ -1,12 +1,11 @@
 <?php
-
 require_once($_SERVER['DOCUMENT_ROOT'] . '/ctrl/ctrl.php');
 require_once($_SERVER['DOCUMENT_ROOT'] . '/lib/log.php');
 
 use Monolog\Logger;
 
-/** Traite le formulaire de Logout. */
-class Logout extends Ctrl
+/** Affiche le formualire de login. */
+class LoginDisplay extends Ctrl
 {
     /** @Override */
     function log(): Logger
@@ -18,33 +17,27 @@ class Logout extends Ctrl
     /** @Override */
     function getPageTitle()
     {
-        return null;
+        return 'Connectez-vous';
     }
 
     /** @Override */
     function getDescription()
     {
-        return null;
+        return 'Ajouter un nouvel utilisateur et définir son rôle';
     }
 
     /** @Override */
     function do()
     {
-        // Vide la session de l'Utilisateur
-        $_SESSION = [];
-        session_unset();
-        session_destroy();
-
-        // et le redirige vers la page d'accueil
-        header('Location: /');
+        //Ne fais rien
     }
 
     /** @Override */
     function getView()
     {
-        return null;
+        return '/view/user/user-add.php';
     }
 }
 
-$ctrl = new Logout();
+$ctrl = new LoginDisplay();
 $ctrl->execute();

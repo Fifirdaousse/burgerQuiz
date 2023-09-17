@@ -20,8 +20,8 @@ class LibUser
         // Prépare la requête
         $query = 'SELECT USER.id, USER.nom, USER.prenom, USER.email, score.score, R.nom AS role';
         $query .= ' FROM utilisateur AS USER';
-        $query .= ' JOIN score ON score.idUser = USER.id';
-        $query .= ' LEFT JOIN role AS R ON USER.idRole = R.id';
+        $query .= ' LEFT JOIN score ON score.idUser = USER.id';
+        $query .= ' JOIN role AS R ON USER.idRole = R.id';
         $query .= ' ORDER BY USER.nom';
         $stmt = LibDb::getPDO()->prepare($query);
 
@@ -30,7 +30,6 @@ class LibUser
 
         $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
         return $result;
-
     }
 
     /**
@@ -62,7 +61,7 @@ class LibUser
         // $successOrFailure =
         $stmt->execute();
         // self::log()->info(__FUNCTION__, ['Success (1) or Failure (0) ?' => $successOrFailure]);
-        
+
         // Quand le résultat vaut 'false', retourne une valeur 'null' (ou 'absence de valeur')
         // sinon, retourne l'Utilisateur identifié.
         $result = $stmt->fetch(PDO::FETCH_ASSOC);
@@ -135,8 +134,8 @@ class LibUser
         $stmt->bindParam(':prenom', $prenom);
         $stmt->bindParam(':email', $email);
         $stmt->bindParam(':motDePasse', $mdp);
-        $stmt->bindParam(':idRole', $idRole); 
-        
+        $stmt->bindParam(':idRole', $idRole);
+
         // Exécute la requête
         $successOrFailure = $stmt->execute();
 
@@ -147,7 +146,7 @@ class LibUser
     static function signup($nom, $prenom, $email, $mdp)
     {
         // ID du rôle Membre
-        $idRole = 20; 
+        $idRole = 20;
 
         // Prépare la requête
         $query = 'INSERT INTO utilisateur (nom, prenom, email, motDePasse, idRole) VALUES';
@@ -158,8 +157,8 @@ class LibUser
         $stmt->bindParam(':prenom', $prenom);
         $stmt->bindParam(':email', $email);
         $stmt->bindParam(':motDePasse', $mdp); // Stocke le hash du mot de passe
-        $stmt->bindParam(':idRole', $idRole); 
-        
+        $stmt->bindParam(':idRole', $idRole);
+
         // Exécute la requête
         $successOrFailure = $stmt->execute();
 

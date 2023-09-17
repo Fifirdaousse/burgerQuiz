@@ -1,10 +1,10 @@
 -- Supprime la base de données si elle existe déjà
-DROP DATABASE IF EXISTS `540_fc`;
+DROP DATABASE IF EXISTS `burger_quiz`;
 
 -- Crée la base de données
-CREATE DATABASE IF NOT EXISTS `540_fc`;
+CREATE DATABASE IF NOT EXISTS `burger_quiz`;
 
-USE `540_fc`;
+USE `burger_quiz`;
 
 CREATE TABLE role(
     id bigint(250) NOT NULL AUTO_INCREMENT PRIMARY KEY

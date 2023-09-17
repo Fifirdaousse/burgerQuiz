@@ -1,9 +1,7 @@
-<?php require("../view/partial/header.php");?>
-
 <main class="d-flex jc-center wrap m-1200 m-auto ">
 
 
-    <form action="../ctrl/user/user-add.php" method="post" class="border-ra p-45 light-blue">
+    <form action="../user/user-add.php" method="post" class="border-ra p-45 light-blue">
         <h2 class="text-center"> Ajouter un utilisateur</h2>
 
         <div class="d-grid">
@@ -33,7 +31,6 @@
         </select>
 
         <button class="border-ra button m-10"> Ajouter </button>
-    
+
     </form>
 </main>
-<?php require("../view/partial/footer.php") ?>

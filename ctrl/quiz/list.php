@@ -9,9 +9,10 @@ use Monolog\Logger;
 class Quiz extends Ctrl
 {
     /** @Override */
-    function log() : Logger {
+    function log(): Logger
+    {
         return Log::getLog(__CLASS__);
-    } 
+    }
 
     /** @Override */
     protected function isUserLogged()
@@ -28,9 +29,9 @@ class Quiz extends Ctrl
     /** @Override */
     function getPageTitle()
     {
-        return 'QUIZ';
+        return 'Quiz';
     }
-    
+
     /** @Override */
     function getDescription()
     {
@@ -42,9 +43,8 @@ class Quiz extends Ctrl
     {
         // Genere de maniere aleatoire les questions
         $numbers = implode(', ', LibQuiz::multyRandomNumber(1, 30));
-       $listQuiz = LibQuiz::getQuestion($numbers);
+        $listQuiz = LibQuiz::getQuestion($numbers);
         $this->addViewArg('listQuiz', $listQuiz);
-
     }
 
     /** @Override */

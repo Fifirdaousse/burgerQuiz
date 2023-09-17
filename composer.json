@@ -1,10 +1,10 @@
 {
-    "name": "brief/640",
-    "description": "brief 640 - quiz",
+    "name": "desktop/quiz",
+    "description": "brief quiz",
     "type": "project",
     "autoload": {
         "psr-4": {
-            "brief\\640\\": "src/"
+            "desktop\\quiz\\": "src/"
         }
     },
     "authors": [

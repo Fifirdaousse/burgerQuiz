@@ -14,19 +14,20 @@ class LibQuiz
     //     return Log::getLog(__CLASS__);
     // }
 
-     //Générer 6 nombres aléatoires et les stock dans un tableau
-    static function multyRandomNumber($min, $max){
+    //Générer 6 nombres aléatoires et les stock dans un tableau
+    static function multyRandomNumber($min, $max)
+    {
         $arr = [];
-   
-        for ($i = 0 ; $i <= 6; $i++){
+
+        for ($i = 0; $i <= 6; $i++) {
             $randomNumber = rand($min, $max);
             $arr[] = $randomNumber;
         }
-   
-        return $arr;
-   }
 
-   //Recupere les questions ainsi que les propositions associés
+        return $arr;
+    }
+
+    //Recupere les questions ainsi que les propositions associés
     static function getQuestion($numbers)
     {
         // self::log()->info(__FUNCTION__, ['idUser' => $idUser, 'title' => $title, 'description' => $description, 'text' => $text, 'picture' => $picture]);
@@ -39,7 +40,7 @@ class LibQuiz
         $query .= 'WHERE question.id IN(' . $numbers . ')';
         // self::log()->info(__FUNCTION__, ['query' => $query]);
         $stmt = LibDb::getPDO()->prepare($query);
-        
+
 
         // Exécute la requête
         $successOrFailure = $stmt->execute();
@@ -48,7 +49,7 @@ class LibQuiz
         $results =  $stmt->fetchAll(PDO::FETCH_ASSOC);
 
         $questions = [];
-        
+
         foreach ($results as $result) {
             $questions[$result['numero']]['intituleQuestion'] = $result['intituleQuestion'];
             $questions[$result['numero']]['propositions'][] = [
@@ -86,5 +87,22 @@ class LibQuiz
         // self::log()->info(__FUNCTION__, ['result' => $result]);
 
         return $successOrFailure;
+    }
+
+    static function  readAllScore()
+    {
+        // self::log()->info(__FUNCTION__, ['id' => $id]);
+
+        // Prépare la requête
+        $query = 'SELECT score, nom, prenom ';
+        $query .= 'FROM utilisateur AS USER ';
+        $query .= 'JOIN score ON score.idUser = USER.id';
+        $stmt = LibDb::getPDO()->prepare($query);
+
+        // Exécute la requête
+        $stmt->execute();
+
+        $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        return $result;
     }
 }

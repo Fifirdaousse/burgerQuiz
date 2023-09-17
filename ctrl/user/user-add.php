@@ -32,7 +32,7 @@ class AddUser extends Ctrl
     /** @Override */
     function getDescription()
     {
-        return 'Ajouter un nouvel utilisateur et définir son rôle';
+        return null;
     }
 
     /** @Override */
@@ -45,9 +45,9 @@ class AddUser extends Ctrl
         $mdp = $_POST['mdp'];
         $valeur = $_POST['role'];
 
-        if($valeur == "gestionnaire"){
+        if ($valeur == "gestionnaire") {
             $idRole = 10;
-        }else{
+        } else {
             $idRole = 20;
         }
 
@@ -55,13 +55,13 @@ class AddUser extends Ctrl
         LibUser::createUser($nom, $prenom, $email, $mdp, $idRole);
 
         // Redirige l'Utilisateur vers la liste des Utilisateurs
-        header('Location: /ctrl/user/user.php');
+        header('Location: /ctrl/user/list.php');
     }
 
     /** @Override */
     function getView()
     {
-        return '/view/view/user-add.php';
+        return null;
     }
 }
 
