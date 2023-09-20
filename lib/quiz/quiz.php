@@ -94,7 +94,7 @@ class LibQuiz
         // self::log()->info(__FUNCTION__, ['id' => $id]);
 
         // Prépare la requête
-        $query = 'SELECT score, nom, prenom ';
+        $query = 'SELECT score, nom, prenom, USER.id, idUser ';
         $query .= 'FROM utilisateur AS USER ';
         $query .= 'JOIN score ON score.idUser = USER.id';
         $stmt = LibDb::getPDO()->prepare($query);

@@ -24,7 +24,7 @@
         </div>
 
         <button class="border-ra button m-10"> S'inscrire </button>
-    
+
     </form>
 
 </main>

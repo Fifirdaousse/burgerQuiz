@@ -46,7 +46,7 @@ class SignUser extends Ctrl
         LibUser::signup($nom, $prenom, $email, $mdp);
 
         // Redirige l'Utilisateur vers la liste des Utilisateurs
-        header('Location: /ctrl/auth/login-display.php');
+        header('Location: ./login-display.php');
     }
 
     /** @Override */
