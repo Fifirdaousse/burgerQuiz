@@ -2,9 +2,9 @@
 
 
 require_once($_SERVER['DOCUMENT_ROOT'] . '/ctrl/ctrl.php');
-require_once($_SERVER['DOCUMENT_ROOT'] . '/lib/log.php');
-
 require_once($_SERVER['DOCUMENT_ROOT'] . '/lib/user/user.php');
+
+require_once($_SERVER['DOCUMENT_ROOT'] . '/lib/log.php');
 
 use Monolog\Logger;
 
@@ -41,7 +41,7 @@ class SignUser extends Ctrl
         $prenom = $_POST['prenom'];
         $email = $_POST['email'];
         $mdp = $_POST['mdp'];
-    
+
         // Créé l'Utilisateur
         LibUser::signup($nom, $prenom, $email, $mdp);
 
@@ -58,4 +58,3 @@ class SignUser extends Ctrl
 
 $ctrl = new SignUser();
 $ctrl->execute();
-

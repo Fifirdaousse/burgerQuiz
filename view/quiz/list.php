@@ -1,4 +1,4 @@
-<main class="d-flex">
+<main class="d-flex jc-center">
     <form action="/ctrl/quiz/quiz-result.php" method="post" class="w-70 w-1000 w-360 m-5">
         <?php foreach ($args['listQuiz'] as $key => $question) : ?>
             <div class="border-ra light-blue text-center p-5 m-b-35 ">

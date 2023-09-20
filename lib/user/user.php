@@ -44,23 +44,19 @@ class LibUser
      */
     static function find($email, $mdp)
     {
-        // self::log()->info(__FUNCTION__, ['email' => $email, 'password' => $password]);
 
         // Prépare la requête
         $query = 'SELECT *';
         $query .= ' FROM utilisateur AS U';
-        // $query .= ' JOIN role AS R ON U.idRole = R.id';
         $query .= ' WHERE U.email = :email';
         $query .= ' AND U.motDePasse = :motDePasse';
-        // self::log()->info(__FUNCTION__, ['query' => $query]);
+
         $stmt = LibDb::getPDO()->prepare($query);
         $stmt->bindParam(':email', $email);
         $stmt->bindParam(':motDePasse', $mdp);
 
         // Exécute la requête
-        // $successOrFailure =
         $stmt->execute();
-        // self::log()->info(__FUNCTION__, ['Success (1) or Failure (0) ?' => $successOrFailure]);
 
         // Quand le résultat vaut 'false', retourne une valeur 'null' (ou 'absence de valeur')
         // sinon, retourne l'Utilisateur identifié.
@@ -69,7 +65,6 @@ class LibUser
             $result = null;
         }
 
-        // self::log()->info(__FUNCTION__, ['result' => $result]);
         return $result;
     }
 
