@@ -30,13 +30,12 @@ class LibQuiz
     //Recupere les questions ainsi que les propositions associés
     static function getQuestion($numbers)
     {
-        // self::log()->info(__FUNCTION__, ['idUser' => $idUser, 'title' => $title, 'description' => $description, 'text' => $text, 'picture' => $picture]);
 
         // Prépare la requête
         $query = "SELECT question.numero, question.intitule AS 'intituleQuestion', proposition.intitule 
                     AS 'intituleProposition', proposition.lettre, proposition.estBonneReponse ";
         $query .= 'FROM question ';
-        $query .= 'LEFT JOIN proposition on question.id = proposition.idQuestion ';
+        $query .= 'JOIN proposition on question.id = proposition.idQuestion ';
         $query .= 'WHERE question.id IN(' . $numbers . ')';
         // self::log()->info(__FUNCTION__, ['query' => $query]);
         $stmt = LibDb::getPDO()->prepare($query);
